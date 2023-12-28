@@ -33,12 +33,12 @@ namespace ProAtividade.API.Controllers
             return context.Atividades.FirstOrDefault(ati => ati.Id == id);
         }
         [HttpPost]
-        public IEnumerable<Atividade> Post(Atividade atividade)
+        public Atividade Post(Atividade atividade)
         {
             context.Atividades.Add(atividade);
             if (context.SaveChanges() > 0)
             {
-                return context.Atividades;
+                return context.Atividades.FirstOrDefault(a => a.Id == atividade.Id);
             }
             else
             {
@@ -56,7 +56,7 @@ namespace ProAtividade.API.Controllers
             context.Update(atividade);
             if (context.SaveChanges() > 0)
             {
-                return context.Atividades.FirstOrDefault(ati => atividade.Id == id);
+                return context.Atividades.FirstOrDefault(ati => ati.Id == id);
             }
             else
             {
